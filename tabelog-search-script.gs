@@ -1,3 +1,6 @@
+/**
+ *
+ */
 function onOpen() {
   // メニューバーにカスタムメニューを追加
   //var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -11,6 +14,9 @@ function onOpen() {
   deleteProperty("progress_num");
 }
 
+/**
+ *
+ */
 function onExec() {
   deleteTrigger();
   deleteProperty("add_sheet");
@@ -19,10 +25,16 @@ function onExec() {
   myFunction(false);
 }
 
+/**
+ *
+ */
 function onReExec() {
   myFunction(true);
 }
 
+/**
+ *
+ */
 function myFunction(isReExec) {
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++
   // ++ initialize
@@ -165,24 +177,36 @@ function myFunction(isReExec) {
 }
 
 // property methods
+/**
+ *
+ */
 function setProperty(key, value) {
   deleteProperty(key);
   var properties = PropertiesService.getScriptProperties();
   properties.setProperty(key, value);
 }
 
+/**
+ *
+ */
 function getProperty(key) {
   var properties = PropertiesService.getScriptProperties();
   var property = properties.getProperty(key) 
   return !property ? null: property;
 }
 
+/**
+ *
+ */
 function deleteProperty(key) {
   var properties = PropertiesService.getScriptProperties();
   properties.deleteProperty(key);
 }
 
-// trigger methods    
+// trigger methods
+/**
+ *
+ */
 function setTrigger(func_name) {
   deleteTrigger();
   var dt = new Date();
@@ -190,6 +214,9 @@ function setTrigger(func_name) {
   ScriptApp.newTrigger(func_name).timeBased().at(dt).create();
 }
 
+/**
+ *
+ */
 function deleteTrigger() {
   var triggers = ScriptApp.getProjectTriggers();
   if (!triggers) { return; }
@@ -199,6 +226,9 @@ function deleteTrigger() {
 } 
 
 // parse methods
+/**
+ *
+ */
 function makeShopUrlList(page_html) {
   var shop_url_list = null;
   if (page_html) {
@@ -218,6 +248,9 @@ function makeShopUrlList(page_html) {
   return shop_url_list
 }
 
+/**
+ *
+ */
 function parseHTML(shop_html, pattern) {
   var res = null;
   if (shop_html) {
@@ -228,6 +261,9 @@ function parseHTML(shop_html, pattern) {
   return shapeString(trim(res));
 }
 
+/**
+ *
+ */
 function parseNextPageUrl(page_html) {
   var res = null;
   if (page_html) {
@@ -239,6 +275,9 @@ function parseNextPageUrl(page_html) {
   return trim(res);
 }
 
+/**
+ *
+ */
 function trim(target) {
   if (!target) {
     return target;
@@ -246,6 +285,9 @@ function trim(target) {
   return target.replace(/(^\s+)|(\s+$)/g, "");
 }
 
+/**
+ *
+ */
 function deleteTags(target) {
   if (!target) {
     return target;
@@ -253,6 +295,9 @@ function deleteTags(target) {
   return target.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, "");
 }
 
+/**
+ *
+ */
 function shapeString(target) {
   if (!target) {
     return "not found";
@@ -273,6 +318,9 @@ function shapeString(target) {
   }
 }
 
+/**
+ *
+ */
 function writeShopData(
   add_sheet,
   shop_url,
